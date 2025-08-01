@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal
 from PyQt5.QtGui import QFont, QPalette, QColor, QPixmap, QIcon
 
-YUNWU_API_KEY = "sk-lPuPKkc0ikSKnNRpuOMim4ZhTsSBYi6H64MmBXIkeNOaRNiE"
+YUNWU_API_KEY = "your_api_key_here"
 YUNWU_API_URL = "https://yunwu.ai/v1/chat/completions"
 
 # 真实开奖数据API配置
