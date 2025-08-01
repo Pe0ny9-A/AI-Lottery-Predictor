@@ -32,7 +32,7 @@
 ### 开发环境
 - **Python**: 3.7+
 - **GUI框架**: PyQt5
-- **AI服务**: 云雾AI API
+- **AI服务**: 云雾AI API[https://yunwu.ai/]
 - **数据源**: 500.com、中国福利彩票官网
 
 ### 核心依赖
@@ -212,6 +212,7 @@ YUNWU_API_URL = "https://yunwu.ai/v1/chat/completions"
 如有问题或建议，请通过以下方式联系：
 - 提交GitHub Issue
 - 发送邮件至项目维护者
+- 联系邮箱: pikachu237325@163.com
 
 ---
 
