@@ -64,18 +64,22 @@ class SearchableComboBox(QComboBox):
         # 设置样式
         self.setStyleSheet("""
             QComboBox {
-                border: 2px solid #3498db;
+                border: 2px solid #2c3e50;
                 border-radius: 8px;
                 padding: 8px 12px;
-                background: white;
+                background: #f8f9fa;
+                color: #000000;
                 font-size: 14px;
                 min-height: 20px;
+                font-weight: 500;
             }
             QComboBox:hover {
-                border-color: #2980b9;
+                border-color: #1a252f;
+                background: #ffffff;
             }
             QComboBox:focus {
-                border-color: #e74c3c;
+                border-color: #000000;
+                background: #ffffff;
             }
             QComboBox::drop-down {
                 border: none;
@@ -85,8 +89,15 @@ class SearchableComboBox(QComboBox):
                 image: none;
                 border-left: 5px solid transparent;
                 border-right: 5px solid transparent;
-                border-top: 5px solid #3498db;
+                border-top: 5px solid #000000;
                 margin-right: 5px;
+            }
+            QComboBox QAbstractItemView {
+                background: #ffffff;
+                color: #000000;
+                border: 2px solid #2c3e50;
+                selection-background-color: #e9ecef;
+                selection-color: #000000;
             }
         """)
         
@@ -102,10 +113,10 @@ class StyledButton(QPushButton):
         self.setStyleSheet("""
             QPushButton {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #3498db, stop:1 #2980b9);
-                border: none;
+                    stop:0 #2c3e50, stop:1 #1a252f);
+                border: 2px solid #000000;
                 border-radius: 8px;
-                color: white;
+                color: #ffffff;
                 font-size: 14px;
                 font-weight: bold;
                 padding: 8px 16px;
@@ -113,15 +124,17 @@ class StyledButton(QPushButton):
             }
             QPushButton:hover {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #2980b9, stop:1 #1f5f8b);
+                    stop:0 #000000, stop:1 #2c3e50);
+                border-color: #000000;
             }
             QPushButton:pressed {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #1f5f8b, stop:1 #154360);
+                    stop:0 #1a252f, stop:1 #000000);
             }
             QPushButton:disabled {
-                background: #bdc3c7;
-                color: #7f8c8d;
+                background: #e9ecef;
+                color: #6c757d;
+                border-color: #dee2e6;
             }
         """)
 
@@ -132,10 +145,10 @@ class SecondaryButton(QPushButton):
         self.setStyleSheet("""
             QPushButton {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #e74c3c, stop:1 #c0392b);
-                border: none;
+                    stop:0 #dc3545, stop:1 #c82333);
+                border: 2px solid #000000;
                 border-radius: 8px;
-                color: white;
+                color: #ffffff;
                 font-size: 12px;
                 font-weight: bold;
                 padding: 6px 12px;
@@ -143,15 +156,17 @@ class SecondaryButton(QPushButton):
             }
             QPushButton:hover {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #c0392b, stop:1 #a93226);
+                    stop:0 #c82333, stop:1 #bd2130);
+                border-color: #000000;
             }
             QPushButton:pressed {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #a93226, stop:1 #922b21);
+                    stop:0 #bd2130, stop:1 #a71e2a);
             }
             QPushButton:disabled {
-                background: #bdc3c7;
-                color: #7f8c8d;
+                background: #e9ecef;
+                color: #6c757d;
+                border-color: #dee2e6;
             }
         """)
 
@@ -210,11 +225,11 @@ class PredictorWindow(QWidget):
             QLabel {
                 font-size: 24px;
                 font-weight: bold;
-                color: #2c3e50;
+                color: #000000;
                 padding: 10px;
-                background: rgba(255, 255, 255, 0.8);
+                background: #f8f9fa;
                 border-radius: 15px;
-                border: 2px solid #3498db;
+                border: 2px solid #2c3e50;
             }
         """)
         main_layout.addWidget(title_label)
@@ -238,18 +253,25 @@ class PredictorWindow(QWidget):
         self.status_bar = QLabel("就绪 - 请选择AI模型和彩票类型开始预测")
         self.status_bar.setStyleSheet("""
             QLabel {
-                background: rgba(52, 152, 219, 0.1);
-                border: 1px solid #3498db;
+                background: #e9ecef;
+                border: 2px solid #2c3e50;
                 border-radius: 5px;
                 padding: 8px 15px;
                 font-size: 12px;
-                color: #2c3e50;
+                color: #000000;
                 font-weight: bold;
             }
         """)
         main_layout.addWidget(self.status_bar)
 
         self.setLayout(main_layout)
+        
+        # 设置主窗口背景色
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #f8f9fa;
+            }
+        """)
         
         # 初始化完成后加载历史数据
         self.load_history_data()
@@ -261,17 +283,18 @@ class PredictorWindow(QWidget):
             QGroupBox {
                 font-size: 16px;
                 font-weight: bold;
-                color: #2c3e50;
-                border: 2px solid #3498db;
+                color: #000000;
+                border: 2px solid #2c3e50;
                 border-radius: 10px;
                 margin-top: 10px;
                 padding-top: 10px;
-                background: rgba(255, 255, 255, 0.9);
+                background: #f8f9fa;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
                 padding: 0 5px 0 5px;
+                color: #000000;
             }
         """)
         
@@ -284,18 +307,18 @@ class PredictorWindow(QWidget):
             QGroupBox {
                 font-size: 12px;
                 font-weight: bold;
-                color: #34495e;
-                border: 1px solid #bdc3c7;
+                color: #000000;
+                border: 2px solid #6c757d;
                 border-radius: 6px;
                 margin-top: 6px;
                 padding-top: 6px;
-                background: rgba(255, 255, 255, 0.7);
+                background: #ffffff;
             }
         """)
         model_layout = QVBoxLayout()
         
         model_label = QLabel("请选择AI模型（可搜索）：")
-        model_label.setStyleSheet("font-size: 11px; color: #2c3e50; margin-bottom: 3px;")
+        model_label.setStyleSheet("font-size: 11px; color: #000000; margin-bottom: 3px; font-weight: 500;")
         model_layout.addWidget(model_label)
         
         self.model_combo = SearchableComboBox()
@@ -309,18 +332,18 @@ class PredictorWindow(QWidget):
             QGroupBox {
                 font-size: 12px;
                 font-weight: bold;
-                color: #34495e;
-                border: 1px solid #bdc3c7;
+                color: #000000;
+                border: 2px solid #6c757d;
                 border-radius: 6px;
                 margin-top: 6px;
                 padding-top: 6px;
-                background: rgba(255, 255, 255, 0.7);
+                background: #ffffff;
             }
         """)
         lottery_layout = QVBoxLayout()
         
         lottery_label = QLabel("请选择彩票类型：")
-        lottery_label.setStyleSheet("font-size: 11px; color: #2c3e50; margin-bottom: 3px;")
+        lottery_label.setStyleSheet("font-size: 11px; color: #000000; margin-bottom: 3px; font-weight: 500;")
         lottery_layout.addWidget(lottery_label)
         
         self.lottery_type_combo = QComboBox()
@@ -328,18 +351,40 @@ class PredictorWindow(QWidget):
         self.lottery_type_combo.currentTextChanged.connect(self.on_lottery_type_changed)
         self.lottery_type_combo.setStyleSheet("""
             QComboBox {
-                border: 2px solid #e74c3c;
+                border: 2px solid #2c3e50;
                 border-radius: 6px;
                 padding: 6px 10px;
-                background: white;
+                background: #f8f9fa;
+                color: #000000;
                 font-size: 12px;
                 min-height: 16px;
+                font-weight: 500;
             }
             QComboBox:hover {
-                border-color: #c0392b;
+                border-color: #000000;
+                background: #ffffff;
             }
             QComboBox:focus {
-                border-color: #e74c3c;
+                border-color: #000000;
+                background: #ffffff;
+            }
+            QComboBox::drop-down {
+                border: none;
+                width: 20px;
+            }
+            QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid #000000;
+                margin-right: 5px;
+            }
+            QComboBox QAbstractItemView {
+                background: #ffffff;
+                color: #000000;
+                border: 2px solid #2c3e50;
+                selection-background-color: #e9ecef;
+                selection-color: #000000;
             }
         """)
         lottery_layout.addWidget(self.lottery_type_combo)
@@ -367,14 +412,16 @@ class PredictorWindow(QWidget):
         self.progress_bar.setVisible(False)
         self.progress_bar.setStyleSheet("""
             QProgressBar {
-                border: 2px solid #bdc3c7;
+                border: 2px solid #2c3e50;
                 border-radius: 8px;
                 text-align: center;
-                background: white;
+                background: #f8f9fa;
+                color: #000000;
+                font-weight: bold;
             }
             QProgressBar::chunk {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #3498db, stop:1 #2980b9);
+                    stop:0 #2c3e50, stop:1 #000000);
                 border-radius: 6px;
             }
         """)
@@ -390,17 +437,18 @@ class PredictorWindow(QWidget):
             QGroupBox {
                 font-size: 16px;
                 font-weight: bold;
-                color: #2c3e50;
-                border: 2px solid #27ae60;
+                color: #000000;
+                border: 2px solid #2c3e50;
                 border-radius: 10px;
                 margin-top: 10px;
                 padding-top: 10px;
-                background: rgba(255, 255, 255, 0.9);
+                background: #f8f9fa;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
                 padding: 0 5px 0 5px;
+                color: #000000;
             }
         """)
         
@@ -410,28 +458,29 @@ class PredictorWindow(QWidget):
         self.tab_widget = QTabWidget()
         self.tab_widget.setStyleSheet("""
             QTabWidget::pane {
-                border: 2px solid #bdc3c7;
+                border: 2px solid #2c3e50;
                 border-radius: 10px;
-                background: white;
+                background: #ffffff;
             }
             QTabBar::tab {
-                background: #ecf0f1;
-                border: 2px solid #bdc3c7;
+                background: #e9ecef;
+                border: 2px solid #2c3e50;
                 padding: 10px 20px;
                 margin-right: 3px;
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
                 font-size: 14px;
                 font-weight: bold;
+                color: #000000;
             }
             QTabBar::tab:selected {
-                background: #3498db;
-                color: white;
-                border-color: #3498db;
+                background: #2c3e50;
+                color: #ffffff;
+                border-color: #2c3e50;
             }
             QTabBar::tab:hover {
-                background: #2980b9;
-                color: white;
+                background: #495057;
+                color: #ffffff;
             }
         """)
         
@@ -443,16 +492,18 @@ class PredictorWindow(QWidget):
         self.first_result_output.setReadOnly(True)
         self.first_result_output.setStyleSheet("""
             QTextEdit {
-                border: 2px solid #27ae60;
+                border: 2px solid #2c3e50;
                 border-radius: 8px;
                 padding: 15px;
-                background: white;
+                background: #ffffff;
+                color: #000000;
                 font-size: 15px;
                 line-height: 1.8;
                 font-family: 'Microsoft YaHei', 'Consolas', monospace;
+                font-weight: 500;
             }
             QTextEdit:focus {
-                border-color: #2ecc71;
+                border-color: #000000;
             }
         """)
         self.first_result_output.setPlaceholderText("第一次预测结果将在这里显示...\n\n💡 提示：\n1. 选择AI模型和彩票类型\n2. 点击'开始预测'按钮\n3. 等待AI分析完成\n4. 完成第一次预测后可进行二次预测")
@@ -468,16 +519,18 @@ class PredictorWindow(QWidget):
         self.secondary_result_output.setReadOnly(True)
         self.secondary_result_output.setStyleSheet("""
             QTextEdit {
-                border: 2px solid #e74c3c;
+                border: 2px solid #2c3e50;
                 border-radius: 8px;
                 padding: 15px;
-                background: white;
+                background: #ffffff;
+                color: #000000;
                 font-size: 15px;
                 line-height: 1.8;
                 font-family: 'Microsoft YaHei', 'Consolas', monospace;
+                font-weight: 500;
             }
             QTextEdit:focus {
-                border-color: #c0392b;
+                border-color: #000000;
             }
         """)
         self.secondary_result_output.setPlaceholderText("二次预测结果将在这里显示...\n\n💡 提示：\n1. 先完成第一次预测\n2. 点击'二次预测'按钮\n3. AI将分析第一次预测结果\n4. 给出1-2组最高中奖率的号码")
@@ -497,18 +550,18 @@ class PredictorWindow(QWidget):
             QLabel {
                 font-size: 16px;
                 font-weight: bold;
-                color: #2c3e50;
+                color: #000000;
                 padding: 10px;
-                background: rgba(52, 152, 219, 0.1);
+                background: #e9ecef;
                 border-radius: 8px;
-                border: 1px solid #3498db;
+                border: 2px solid #2c3e50;
             }
         """)
         history_header.addWidget(history_title)
         
         # 期数选择
         period_label = QLabel("期数选择：")
-        period_label.setStyleSheet("font-size: 12px; color: #2c3e50; font-weight: bold;")
+        period_label.setStyleSheet("font-size: 12px; color: #000000; font-weight: bold;")
         history_header.addWidget(period_label)
         
         self.period_combo = QComboBox()
@@ -516,15 +569,36 @@ class PredictorWindow(QWidget):
         self.period_combo.setCurrentText("最近100期")
         self.period_combo.setStyleSheet("""
             QComboBox {
-                border: 2px solid #3498db;
+                border: 2px solid #2c3e50;
                 border-radius: 6px;
                 padding: 6px 10px;
-                background: white;
+                background: #f8f9fa;
+                color: #000000;
                 font-size: 12px;
                 min-height: 16px;
+                font-weight: 500;
             }
             QComboBox:hover {
-                border-color: #2980b9;
+                border-color: #000000;
+                background: #ffffff;
+            }
+            QComboBox::drop-down {
+                border: none;
+                width: 20px;
+            }
+            QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid #000000;
+                margin-right: 5px;
+            }
+            QComboBox QAbstractItemView {
+                background: #ffffff;
+                color: #000000;
+                border: 2px solid #2c3e50;
+                selection-background-color: #e9ecef;
+                selection-color: #000000;
             }
         """)
         history_header.addWidget(self.period_combo)
@@ -535,10 +609,10 @@ class PredictorWindow(QWidget):
         self.refresh_history_button.setStyleSheet("""
             QPushButton {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #27ae60, stop:1 #229954);
-                border: none;
+                    stop:0 #28a745, stop:1 #20c997);
+                border: 2px solid #000000;
                 border-radius: 6px;
-                color: white;
+                color: #ffffff;
                 font-size: 12px;
                 font-weight: bold;
                 padding: 6px 12px;
@@ -546,11 +620,13 @@ class PredictorWindow(QWidget):
             }
             QPushButton:hover {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #229954, stop:1 #1e8449);
+                    stop:0 #20c997, stop:1 #17a2b8);
+                border-color: #000000;
             }
             QPushButton:disabled {
-                background: #bdc3c7;
-                color: #7f8c8d;
+                background: #e9ecef;
+                color: #6c757d;
+                border-color: #dee2e6;
             }
         """)
         history_header.addWidget(self.refresh_history_button)
@@ -561,10 +637,10 @@ class PredictorWindow(QWidget):
         self.force_refresh_button.setStyleSheet("""
             QPushButton {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #e74c3c, stop:1 #c0392b);
-                border: none;
+                    stop:0 #dc3545, stop:1 #c82333);
+                border: 2px solid #000000;
                 border-radius: 6px;
-                color: white;
+                color: #ffffff;
                 font-size: 12px;
                 font-weight: bold;
                 padding: 6px 12px;
@@ -572,11 +648,13 @@ class PredictorWindow(QWidget):
             }
             QPushButton:hover {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #c0392b, stop:1 #a93226);
+                    stop:0 #c82333, stop:1 #bd2130);
+                border-color: #000000;
             }
             QPushButton:disabled {
-                background: #bdc3c7;
-                color: #7f8c8d;
+                background: #e9ecef;
+                color: #6c757d;
+                border-color: #dee2e6;
             }
         """)
         history_header.addWidget(self.force_refresh_button)
@@ -586,11 +664,12 @@ class PredictorWindow(QWidget):
         self.cache_status_label.setStyleSheet("""
             QLabel {
                 font-size: 11px;
-                color: #7f8c8d;
+                color: #000000;
                 padding: 4px 8px;
-                background: rgba(189, 195, 199, 0.2);
+                background: #e9ecef;
                 border-radius: 4px;
-                border: 1px solid #bdc3c7;
+                border: 2px solid #2c3e50;
+                font-weight: 500;
             }
         """)
         history_header.addWidget(self.cache_status_label)
@@ -609,26 +688,30 @@ class PredictorWindow(QWidget):
         self.history_progress.setVisible(False)
         self.history_progress.setStyleSheet("""
             QProgressBar {
-                border: 2px solid #3498db;
+                border: 2px solid #2c3e50;
                 border-radius: 6px;
                 text-align: center;
-                background: white;
+                background: #f8f9fa;
+                color: #000000;
+                font-weight: bold;
             }
             QProgressBar::chunk {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #3498db, stop:1 #2980b9);
+                    stop:0 #2c3e50, stop:1 #000000);
                 border-radius: 4px;
             }
         """)
         self.history_table.setStyleSheet("""
             QTextEdit {
-                border: 2px solid #3498db;
+                border: 2px solid #2c3e50;
                 border-radius: 8px;
                 padding: 15px;
-                background: white;
+                background: #ffffff;
+                color: #000000;
                 font-size: 14px;
                 line-height: 1.8;
                 font-family: 'Microsoft YaHei', 'Consolas', monospace;
+                font-weight: 500;
             }
         """)
         self.history_table.setPlaceholderText("历史开奖数据将在这里显示...\n\n💡 提示：\n1. 选择彩票类型和期数\n2. 点击'刷新数据'从500网获取真实历史数据\n3. 点击'强制更新'忽略缓存获取最新数据\n4. 数据来源：500网 (datachart.500.com)\n5. 备用数据源：中国福利彩票官网 (cwl.gov.cn)\n6. 数据会自动缓存，提高加载速度\n7. 缓存有效期为24小时\n8. 如果API请求失败，将显示详细错误信息")
