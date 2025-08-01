@@ -139,6 +139,6 @@ dmypy.json
 Thumbs.db
 
 # Project specific
-history_data/*.json
+# history_data/*.json  # 允许历史数据缓存文件被版本控制
 *.db
 *.sqlite 
